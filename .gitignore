@@ -1,45 +1,74 @@
-# Miscellaneous
-*.class
-*.log
-*.pyc
-*.swp
-.DS_Store
-.atom/
-.build/
-.buildlog/
-.history
-.svn/
-.swiftpm/
-migrate_working_dir/
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
 
-# IntelliJ related
+# IDE
+.idea/
 *.iml
 *.ipr
 *.iws
-.idea/
+.DS_Store
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
+# Kotlin/Native
+*.klib
 
-# Flutter/Dart/Pub related
-**/doc/api/
-**/ios/Flutter/.last_build_id
-.dart_tool/
-.flutter-plugins
-.flutter-plugins-dependencies
-.pub-cache/
-.pub/
-/build/
+# Android
+local.properties
+*.apk
+*.aab
+*.ap_
+*.dex
+/captures
+.externalNativeBuild/
+.cxx/
 
-# Symbolication related
-app.*.symbols
+# iOS
+iosApp/Pods/
+iosApp/.symlinks/
+iosApp/Podfile.lock
+iosApp/build/
+*.xcworkspace
+!iosApp/iosApp.xcodeproj/project.xcworkspace
+iosApp/iosApp.xcodeproj/project.xcworkspace/xcshareddata/
+iosApp/iosApp.xcodeproj/project.xcworkspace/xcuserdata/
+iosApp/iosApp.xcodeproj/xcuserdata/
+*.xcuserstate
+*.xcuserdata
 
-# Obfuscation related
-app.*.map.json
+# Backend (Laravel)
+backend/vendor/
+backend/node_modules/
+backend/.env
+backend/.env.backup
+backend/.env.production
+backend/storage/*.key
+backend/storage/logs/
+backend/storage/framework/cache/
+backend/storage/framework/sessions/
+backend/storage/framework/views/
+backend/bootstrap/cache/
+backend/.phpunit.result.cache
 
-# Android Studio will place build artifacts here
-/android/app/debug
-/android/app/profile
-/android/app/release
+# Secrets
+*.keystore
+*.jks
+google-services.json
+GoogleService-Info.plist
+
+# Heap dumps (large files)
+*.hprof
+
+# Misc
+*.log
+*.tmp
+*.temp
+.env
+.env.local
+Thumbs.db
+
+# Downloaded dependencies
+gradle-8.5/
+gradle-8.5.zip

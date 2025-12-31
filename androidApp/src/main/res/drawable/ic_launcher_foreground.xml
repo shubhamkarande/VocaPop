@@ -1,0 +1,59 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- Background Circle -->
+    <group android:translateX="54" android:translateY="54">
+        <path
+            android:fillColor="#7C4DFF"
+            android:pathData="M0,-40 A40,40 0 1,1 0,40 A40,40 0 1,1 0,-40"/>
+    </group>
+    
+    <!-- Main Card (White) -->
+    <group android:translateX="54" android:translateY="54">
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M-18,-22 L18,-22 Q22,-22 22,-18 L22,18 Q22,22 18,22 L-18,22 Q-22,22 -22,18 L-22,-18 Q-22,-22 -18,-22 Z"/>
+    </group>
+    
+    <!-- Purple Inner Card Area -->
+    <group android:translateX="54" android:translateY="54">
+        <path
+            android:fillColor="#EDE7F6"
+            android:pathData="M-15,-16 L15,-16 Q17,-16 17,-14 L17,10 Q17,12 15,12 L-15,12 Q-17,12 -17,10 L-17,-14 Q-17,-16 -15,-16 Z"/>
+    </group>
+    
+    <!-- Text Lines -->
+    <group android:translateX="54" android:translateY="54">
+        <!-- Line 1 -->
+        <path
+            android:fillColor="#7C4DFF"
+            android:pathData="M-10,-8 L10,-8 Q11,-8 11,-6 L11,-4 Q11,-2 10,-2 L-10,-2 Q-11,-2 -11,-4 L-11,-6 Q-11,-8 -10,-8 Z"/>
+        <!-- Line 2 -->
+        <path
+            android:fillColor="#9E9E9E"
+            android:pathData="M-8,2 L6,2 Q7,2 7,4 L7,5 Q7,6 6,6 L-8,6 Q-9,6 -9,5 L-9,4 Q-9,2 -8,2 Z"/>
+    </group>
+    
+    <!-- Sparkle/Star -->
+    <group android:translateX="70" android:translateY="38">
+        <path
+            android:fillColor="#FFB300"
+            android:pathData="M0,-6 L1.5,-1.5 L6,0 L1.5,1.5 L0,6 L-1.5,1.5 L-6,0 L-1.5,-1.5 Z"/>
+    </group>
+    
+    <!-- Progress Dots at bottom -->
+    <group android:translateX="54" android:translateY="82">
+        <path
+            android:fillColor="#00E676"
+            android:pathData="M-8,0 A3,3 0 1,1 -2,0 A3,3 0 1,1 -8,0"/>
+        <path
+            android:fillColor="#00E676"
+            android:pathData="M-2,0 A3,3 0 1,1 4,0 A3,3 0 1,1 -2,0"/>
+        <path
+            android:fillColor="#BDBDBD"
+            android:pathData="M4,0 A3,3 0 1,1 10,0 A3,3 0 1,1 4,0"/>
+    </group>
+</vector>

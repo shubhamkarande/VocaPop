@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- Allow cleartext traffic for local development -->
+    <domain-config cleartextTrafficPermitted="true">
+        <!-- Allow your laptop IP for local testing -->
+        <domain includeSubdomains="true">10.136.143.11</domain>
+        <!-- Also allow localhost and 10.0.2.2 for emulator -->
+        <domain includeSubdomains="true">10.0.2.2</domain>
+        <domain includeSubdomains="true">localhost</domain>
+        <domain includeSubdomains="true">127.0.0.1</domain>
+        <!-- Allow any local network IP (192.168.x.x) -->
+        <domain includeSubdomains="true">192.168.0.0</domain>
+    </domain-config>
+</network-security-config>

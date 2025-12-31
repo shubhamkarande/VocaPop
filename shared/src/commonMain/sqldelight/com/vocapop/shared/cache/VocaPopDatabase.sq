@@ -1,0 +1,110 @@
+CREATE TABLE UserEntity (
+    id TEXT NOT NULL PRIMARY KEY,
+    email TEXT NOT NULL,
+    selectedLanguage TEXT,
+    dailyGoal INTEGER NOT NULL DEFAULT 10,
+    streak INTEGER NOT NULL DEFAULT 0,
+    wordsMastered INTEGER NOT NULL DEFAULT 0,
+    accessToken TEXT,
+    refreshToken TEXT,
+    lastSyncTimestamp INTEGER DEFAULT 0
+);
+
+CREATE TABLE DeckEntity (
+    id TEXT NOT NULL PRIMARY KEY,
+    name TEXT NOT NULL,
+    language TEXT NOT NULL,
+    description TEXT,
+    isStarter INTEGER NOT NULL DEFAULT 0,
+    cardCount INTEGER NOT NULL DEFAULT 0,
+    learnedCount INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE TABLE CardEntity (
+    id TEXT NOT NULL PRIMARY KEY,
+    deckId TEXT NOT NULL,
+    front TEXT NOT NULL,
+    back TEXT NOT NULL,
+    exampleSentence TEXT,
+    wordType TEXT,
+    imageUrl TEXT,
+    audioUrl TEXT,
+    FOREIGN KEY (deckId) REFERENCES DeckEntity(id) ON DELETE CASCADE
+);
+
+CREATE TABLE UserCardEntity (
+    id TEXT NOT NULL PRIMARY KEY,
+    userId TEXT NOT NULL,
+    cardId TEXT NOT NULL,
+    easeFactor REAL NOT NULL DEFAULT 2.5,
+    intervalDays INTEGER NOT NULL DEFAULT 1,
+    repetitions INTEGER NOT NULL DEFAULT 0,
+    nextReviewDate TEXT NOT NULL,
+    lastReviewDate TEXT,
+    FOREIGN KEY (userId) REFERENCES UserEntity(id) ON DELETE CASCADE,
+    FOREIGN KEY (cardId) REFERENCES CardEntity(id) ON DELETE CASCADE,
+    UNIQUE(userId, cardId)
+);
+
+-- User Queries
+getUser:
+SELECT * FROM UserEntity LIMIT 1;
+
+insertUser:
+INSERT OR REPLACE INTO UserEntity(id, email, selectedLanguage, dailyGoal, streak, wordsMastered, accessToken, refreshToken, lastSyncTimestamp)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+deleteUser:
+DELETE FROM UserEntity;
+
+-- Deck Queries
+getAllDecks:
+SELECT * FROM DeckEntity;
+
+getDeckById:
+SELECT * FROM DeckEntity WHERE id = ?;
+
+insertDeck:
+INSERT OR REPLACE INTO DeckEntity(id, name, language, description, isStarter, cardCount, learnedCount)
+VALUES (?, ?, ?, ?, ?, ?, ?);
+
+deleteAllDecks:
+DELETE FROM DeckEntity;
+
+-- Card Queries
+getCardsByDeckId:
+SELECT * FROM CardEntity WHERE deckId = ?;
+
+getCardById:
+SELECT * FROM CardEntity WHERE id = ?;
+
+insertCard:
+INSERT OR REPLACE INTO CardEntity(id, deckId, front, back, exampleSentence, wordType, imageUrl, audioUrl)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+
+deleteAllCards:
+DELETE FROM CardEntity;
+
+-- UserCard (SRS) Queries
+getUserCardsForDeck:
+SELECT UserCardEntity.*, CardEntity.* FROM UserCardEntity 
+JOIN CardEntity ON UserCardEntity.cardId = CardEntity.id
+WHERE CardEntity.deckId = ?;
+
+getDueUserCards:
+SELECT UserCardEntity.*, CardEntity.* FROM UserCardEntity 
+JOIN CardEntity ON UserCardEntity.cardId = CardEntity.id
+WHERE nextReviewDate <= ?
+ORDER BY nextReviewDate ASC;
+
+insertUserCard:
+INSERT OR REPLACE INTO UserCardEntity(id, userId, cardId, easeFactor, intervalDays, repetitions, nextReviewDate, lastReviewDate)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+
+updateUserCardProgress:
+UPDATE UserCardEntity
+SET easeFactor = ?, intervalDays = ?, repetitions = ?, nextReviewDate = ?, lastReviewDate = ?
+WHERE id = ?;
+
+deleteAllUserCards:
+DELETE FROM UserCardEntity;
